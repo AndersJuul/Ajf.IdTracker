@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualBasic.FileIO;
 using System.IO;
 using CsvHelper;
-using System.Globalization;
 using CsvHelper.Configuration;
 
 namespace Ajf.IdTracker.Shared
@@ -42,8 +38,6 @@ namespace Ajf.IdTracker.Shared
 
                 var csv = new CsvReader(streamReader);
                 csv.Configuration.HasHeaderRecord = true;
-                //csv.Configuration.Delimiter = ";";
-                //csv.Configuration.Encoding = Encoding.UTF8;
 
                 csv.Configuration.RegisterClassMap(typeof(StrItemClassMap));
                 return csv.GetRecords<UniqueNumber>().ToList();
