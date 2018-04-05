@@ -8,6 +8,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ajf.IdTracker", "Ajf.IdTracker\Ajf.IdTracker.csproj", "{4A01D2D1-ADE0-4016-8A8D-F619D8BCD92B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ajf.IdTracker.Tests", "Ajf.IdTracker.Tests\Ajf.IdTracker.Tests.csproj", "{BB5D170A-8821-4CEA-8775-2B93842E4F03}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F81A6931-9534-46DA-94C4-7963FB52EECA} = {F81A6931-9534-46DA-94C4-7963FB52EECA}
+		{4A01D2D1-ADE0-4016-8A8D-F619D8BCD92B} = {4A01D2D1-ADE0-4016-8A8D-F619D8BCD92B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
