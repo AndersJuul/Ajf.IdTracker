@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ajf.IdTracker.Shared", "Ajf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ajf.IdTracker", "Ajf.IdTracker\Ajf.IdTracker.csproj", "{4A01D2D1-ADE0-4016-8A8D-F619D8BCD92B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ajf.IdTracker.Tests", "Ajf.IdTracker.Tests\Ajf.IdTracker.Tests.csproj", "{BB5D170A-8821-4CEA-8775-2B93842E4F03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4A01D2D1-ADE0-4016-8A8D-F619D8BCD92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A01D2D1-ADE0-4016-8A8D-F619D8BCD92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A01D2D1-ADE0-4016-8A8D-F619D8BCD92B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB5D170A-8821-4CEA-8775-2B93842E4F03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB5D170A-8821-4CEA-8775-2B93842E4F03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB5D170A-8821-4CEA-8775-2B93842E4F03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB5D170A-8821-4CEA-8775-2B93842E4F03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
