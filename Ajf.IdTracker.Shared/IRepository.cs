@@ -4,6 +4,6 @@ namespace Ajf.IdTracker.Shared
 {
     public interface IRepository
     {
-        string GetUniqueNewNumber(DateTime date);
+        string GetUniqueNewNumber(DateTime date, string cpr);
     }
 }

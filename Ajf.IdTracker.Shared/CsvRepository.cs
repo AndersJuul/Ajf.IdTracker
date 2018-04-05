@@ -19,12 +19,12 @@ namespace Ajf.IdTracker.Shared
             public StrItemClassMap()
             {
                 AutoMap();
-                //Map(m => m.Id).TypeConverterOption(CultureInfo.CurrentCulture);
-                //Map(m => m.Name).TypeConverterOption(CultureInfo.CurrentCulture);
-                //Map(m => m.Cpr).TypeConverterOption(CultureInfo.CurrentCulture);
-                //Map(m => m.Date).TypeConverterOption(CultureInfo.CurrentCulture);
-                //Map(m => m.Purpose).TypeConverterOption(CultureInfo.CurrentCulture);
-                //Map(m => m.TrialNumber).TypeConverterOption(CultureInfo.InvariantCulture);
+                Map(m => m.Id);
+                Map(m => m.Name);
+                Map(m => m.Cpr);
+                Map(m => m.Date);
+                Map(m => m.Purpose);
+                Map(m => m.TrialNumber);
             }
         }
 
@@ -42,8 +42,8 @@ namespace Ajf.IdTracker.Shared
 
                 var csv = new CsvReader(streamReader);
                 csv.Configuration.HasHeaderRecord = true;
-                csv.Configuration.Delimiter = ";";
-                csv.Configuration.Encoding = Encoding.UTF8;
+                //csv.Configuration.Delimiter = ";";
+                //csv.Configuration.Encoding = Encoding.UTF8;
 
                 csv.Configuration.RegisterClassMap(typeof(StrItemClassMap));
                 return csv.GetRecords<UniqueNumber>().ToList();
@@ -52,17 +52,27 @@ namespace Ajf.IdTracker.Shared
             return new List<UniqueNumber>();
         }
 
-        public string GetUniqueNewNumber(DateTime date)
+        public string GetUniqueNewNumber(DateTime date, string cpr)
         {
-            var newUniqueNumber= GetUniqueNewNumber2(date);
+            var newUniqueNumber= GetUniqueNewNumber2(date, cpr);
 
             Add(newUniqueNumber);
 
             return "";
         }
 
-        private UniqueNumber GetUniqueNewNumber2(DateTime date)
+        private UniqueNumber GetUniqueNewNumber2(DateTime date, string cpr)
         {
+            if(!File.Exists(_csvFileName))
+            {
+                return new UniqueNumber()
+                {
+                    Date = date,
+                    TrialNumber =  1,
+                    Cpr = cpr
+                };
+            }
+
             using (var fileReader = File.OpenText(_csvFileName))
             {
                 var uniqueNumbers = GetUniqueNumbers(fileReader);
@@ -75,7 +85,8 @@ namespace Ajf.IdTracker.Shared
                 var newUniqueNumber = new UniqueNumber()
                 {
                     Date = date,
-                    TrialNumber = maxTrialNumber + 1
+                    TrialNumber = maxTrialNumber + 1,
+                    Cpr= cpr
                 };
 
                 return newUniqueNumber;
@@ -84,14 +95,24 @@ namespace Ajf.IdTracker.Shared
 
         private void Add(UniqueNumber newUniqueNumber)
         {
+            var fileWasThere = File.Exists(_csvFileName);
+
             using (TextWriter fileReader = File.AppendText(_csvFileName))
             {
                 var csv = new CsvWriter(fileReader);
-                csv.Configuration.HasHeaderRecord = true;
-                csv.Configuration.Delimiter = ";";
+
+                if(!fileWasThere)
+                {
+                    csv.WriteHeader<UniqueNumber>();
+                    csv.NextRecord();
+                }
+
+                //csv.Configuration.HasHeaderRecord = true;
+                //csv.Configuration.Delimiter = ";";
+                csv.Configuration.QuoteAllFields = true;
                 csv.Configuration.RegisterClassMap(typeof(StrItemClassMap));
 
-                csv.WriteRecord<UniqueNumber>(newUniqueNumber);
+                csv.WriteRecord(newUniqueNumber);
                 csv.NextRecord();
             }
         }
