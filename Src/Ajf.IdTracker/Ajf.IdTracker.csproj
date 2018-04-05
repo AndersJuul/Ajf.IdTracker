@@ -101,7 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ajf.IdTracker.Shared\Ajf.IdTracker.Shared.csproj">
-      <Project>{F81A6931-9534-46DA-94C4-7963FB52EECA}</Project>
+      <Project>{f81a6931-9534-46da-94c4-7963fb52eeca}</Project>
       <Name>Ajf.IdTracker.Shared</Name>
     </ProjectReference>
   </ItemGroup>
