@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ajf.IdTracker.Shared", "Ajf.IdTracker.Shared\Ajf.IdTracker.Shared.csproj", "{F81A6931-9534-46DA-94C4-7963FB52EECA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ajf.IdTracker", "Ajf.IdTracker\Ajf.IdTracker.csproj", "{4A01D2D1-ADE0-4016-8A8D-F619D8BCD92B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ajf.IdTracker.Tests", "Ajf.IdTracker.Tests\Ajf.IdTracker.Tests.csproj", "{BB5D170A-8821-4CEA-8775-2B93842E4F03}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F81A6931-9534-46DA-94C4-7963FB52EECA} = {F81A6931-9534-46DA-94C4-7963FB52EECA}
+		{4A01D2D1-ADE0-4016-8A8D-F619D8BCD92B} = {4A01D2D1-ADE0-4016-8A8D-F619D8BCD92B}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F81A6931-9534-46DA-94C4-7963FB52EECA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F81A6931-9534-46DA-94C4-7963FB52EECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F81A6931-9534-46DA-94C4-7963FB52EECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F81A6931-9534-46DA-94C4-7963FB52EECA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A01D2D1-ADE0-4016-8A8D-F619D8BCD92B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A01D2D1-ADE0-4016-8A8D-F619D8BCD92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A01D2D1-ADE0-4016-8A8D-F619D8BCD92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A01D2D1-ADE0-4016-8A8D-F619D8BCD92B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB5D170A-8821-4CEA-8775-2B93842E4F03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB5D170A-8821-4CEA-8775-2B93842E4F03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB5D170A-8821-4CEA-8775-2B93842E4F03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB5D170A-8821-4CEA-8775-2B93842E4F03}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A18C5018-6E55-45A9-900C-19BB8E520485}
+	EndGlobalSection
+EndGlobal
