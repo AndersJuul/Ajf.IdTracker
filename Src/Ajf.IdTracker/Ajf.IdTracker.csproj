@@ -100,7 +100,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Ajf.IdTracker.Shared\Ajf.IdTracker.Shared.csproj">
+    <ProjectReference Include="..\Ajf.IdTracker.Shared\Ajf.IdTracker.Shared.csproj">
       <Project>{F81A6931-9534-46DA-94C4-7963FB52EECA}</Project>
       <Name>Ajf.IdTracker.Shared</Name>
     </ProjectReference>
