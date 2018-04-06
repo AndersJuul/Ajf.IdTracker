@@ -4,13 +4,14 @@ namespace Ajf.IdTracker.Shared
 {
     public class UniqueNumber
     {
-        public static UniqueNumber Create(DateTime date, int trialNumber, string cpr)
+        public static UniqueNumber Create(DateTime date, int trialNumber, string cpr, string name)
         {
             var un = new UniqueNumber()
             {
                 Date = date,
                 Cpr = cpr,
                 TrialNumber = trialNumber,
+                Name=name,
                 Id= date.ToString("yyyyMMdd") + "-" + trialNumber.ToString("00")
             };
 

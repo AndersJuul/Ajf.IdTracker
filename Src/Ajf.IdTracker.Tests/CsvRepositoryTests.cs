@@ -16,7 +16,7 @@ namespace Ajf.IdTracker.Tests
             var sut = new CsvRepository(csvName);
 
             // Act
-            var res = sut.GetUniqueNewNumber2(new DateTime(2018, 4, 5), "031069-0503");
+            var res = sut.GetUniqueNewNumber2(new DateTime(2018, 4, 5), "031069-0503", "Anders Juul");
 
             // Assert
             Assert.AreEqual("20180405-01", res.Id);
@@ -27,10 +27,10 @@ namespace Ajf.IdTracker.Tests
             // Arrange
             var csvName = Path.GetTempFileName() + ".csv";
             var sut = new CsvRepository(csvName);
-            sut.Add(UniqueNumber.Create(new DateTime(2018, 4, 5), 1, "031069-0503"));
+            sut.Add(UniqueNumber.Create(new DateTime(2018, 4, 5), 1, "031069-0503", "Anders Juul"));
 
             // Act
-            var res = sut.GetUniqueNewNumber2(new DateTime(2018, 4, 5), "031069-0503");
+            var res = sut.GetUniqueNewNumber2(new DateTime(2018, 4, 5), "031069-0503", "Anders Juul");
 
             // Assert
             Assert.AreEqual("20180405-02", res.Id);

@@ -18,12 +18,14 @@ namespace Ajf.IdTracker.Shared
 
         public string Cpr { get; set; }
 
+        public string Name { get; set; }
+
         public void Generate()
         {
             var date = DateTime.Today;
 
             var uniqueNewNumber= _uniqueNumberProvider
-                .GetUniqueNewNumber(date, Cpr);
+                .GetUniqueNewNumber(date, Cpr, Name);
 
             Clipboard.SetText(uniqueNewNumber);
         }

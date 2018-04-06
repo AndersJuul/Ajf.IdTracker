@@ -50,11 +50,11 @@ namespace Ajf.IdTracker.Shared
             return new List<UniqueNumber>();
         }
 
-        public UniqueNumber GetUniqueNewNumber2(DateTime date, string cpr)
+        public UniqueNumber GetUniqueNewNumber2(DateTime date, string cpr, string name)
         {
             if(!File.Exists(_csvFileName))
             {
-                return UniqueNumber.Create(date, 1, cpr);
+                return UniqueNumber.Create(date, 1, cpr, name);
             }
 
             using (var fileReader = File.OpenText(_csvFileName))
@@ -66,7 +66,7 @@ namespace Ajf.IdTracker.Shared
                     fromDate.Max(x => x.TrialNumber) :
                     0;
 
-                var newUniqueNumber = UniqueNumber.Create(date, maxTrialNumber + 1, cpr);
+                var newUniqueNumber = UniqueNumber.Create(date, maxTrialNumber + 1, cpr, name);
                 return newUniqueNumber;
             };
         }
@@ -85,8 +85,6 @@ namespace Ajf.IdTracker.Shared
                     csv.NextRecord();
                 }
 
-                //csv.Configuration.HasHeaderRecord = true;
-                //csv.Configuration.Delimiter = ";";
                 csv.Configuration.QuoteAllFields = true;
                 csv.Configuration.RegisterClassMap(typeof(StrItemClassMap));
 
