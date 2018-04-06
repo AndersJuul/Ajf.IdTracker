@@ -26,9 +26,13 @@ namespace Ajf.IdTracker.Shared
 
         private string _csvFileName;
 
-        public CsvRepository()
+        public CsvRepository():this(ConfigurationManager.AppSettings["CsvLocation"])
         {
-            _csvFileName = ConfigurationManager.AppSettings["CsvLocation"];
+        }
+
+        public CsvRepository(string csvFileName)
+        {
+            _csvFileName = csvFileName;
         }
 
         public IEnumerable<UniqueNumber> GetUniqueNumbers(StreamReader streamReader)
@@ -52,19 +56,14 @@ namespace Ajf.IdTracker.Shared
 
             Add(newUniqueNumber);
 
-            return "";
+            return newUniqueNumber.Id;
         }
 
         private UniqueNumber GetUniqueNewNumber2(DateTime date, string cpr)
         {
             if(!File.Exists(_csvFileName))
             {
-                return new UniqueNumber()
-                {
-                    Date = date,
-                    TrialNumber =  1,
-                    Cpr = cpr
-                };
+                return UniqueNumber.Create(date, 1, cpr);
             }
 
             using (var fileReader = File.OpenText(_csvFileName))
@@ -76,13 +75,7 @@ namespace Ajf.IdTracker.Shared
                     fromDate.Max(x => x.TrialNumber) :
                     0;
 
-                var newUniqueNumber = new UniqueNumber()
-                {
-                    Date = date,
-                    TrialNumber = maxTrialNumber + 1,
-                    Cpr= cpr
-                };
-
+                var newUniqueNumber = UniqueNumber.Create(date, maxTrialNumber + 1, cpr);
                 return newUniqueNumber;
             };
         }
