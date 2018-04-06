@@ -26,9 +26,13 @@ namespace Ajf.IdTracker.Shared
 
         private string _csvFileName;
 
-        public CsvRepository()
+        public CsvRepository():this(ConfigurationManager.AppSettings["CsvLocation"])
         {
-            _csvFileName = ConfigurationManager.AppSettings["CsvLocation"];
+        }
+
+        public CsvRepository(string csvFileName)
+        {
+            _csvFileName = csvFileName;
         }
 
         public IEnumerable<UniqueNumber> GetUniqueNumbers(StreamReader streamReader)
@@ -46,25 +50,11 @@ namespace Ajf.IdTracker.Shared
             return new List<UniqueNumber>();
         }
 
-        public string GetUniqueNewNumber(DateTime date, string cpr)
-        {
-            var newUniqueNumber= GetUniqueNewNumber2(date, cpr);
-
-            Add(newUniqueNumber);
-
-            return "";
-        }
-
-        private UniqueNumber GetUniqueNewNumber2(DateTime date, string cpr)
+        public UniqueNumber GetUniqueNewNumber2(DateTime date, string cpr, string name)
         {
             if(!File.Exists(_csvFileName))
             {
-                return new UniqueNumber()
-                {
-                    Date = date,
-                    TrialNumber =  1,
-                    Cpr = cpr
-                };
+                return UniqueNumber.Create(date, 1, cpr, name);
             }
 
             using (var fileReader = File.OpenText(_csvFileName))
@@ -76,18 +66,12 @@ namespace Ajf.IdTracker.Shared
                     fromDate.Max(x => x.TrialNumber) :
                     0;
 
-                var newUniqueNumber = new UniqueNumber()
-                {
-                    Date = date,
-                    TrialNumber = maxTrialNumber + 1,
-                    Cpr= cpr
-                };
-
+                var newUniqueNumber = UniqueNumber.Create(date, maxTrialNumber + 1, cpr, name);
                 return newUniqueNumber;
             };
         }
 
-        private void Add(UniqueNumber newUniqueNumber)
+        public void Add(UniqueNumber newUniqueNumber)
         {
             var fileWasThere = File.Exists(_csvFileName);
 
@@ -101,8 +85,6 @@ namespace Ajf.IdTracker.Shared
                     csv.NextRecord();
                 }
 
-                //csv.Configuration.HasHeaderRecord = true;
-                //csv.Configuration.Delimiter = ";";
                 csv.Configuration.QuoteAllFields = true;
                 csv.Configuration.RegisterClassMap(typeof(StrItemClassMap));
 
