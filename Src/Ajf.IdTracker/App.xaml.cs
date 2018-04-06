@@ -10,7 +10,7 @@ namespace IdTracker
     {
         public App()
         {
-            var mainVm = new MainViewModel(new CsvRepository());
+            var mainVm = new MainViewModel(new UniqueNumberProvider( new CsvRepository()));
             var mainform = new MainWindow()
             {
                 DataContext = mainVm

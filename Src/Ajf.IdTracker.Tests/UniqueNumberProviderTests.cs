@@ -6,14 +6,14 @@ using System.IO;
 namespace Ajf.IdTracker.Tests
 {
     [TestFixture]
-    public class CsvRepositoryTests
+    public class UniqueNumberProviderTests
     {
         [Test]
         public void TestThatGetUniqueWorksWhenFileNotThere()
         {
             // Arrange
             var csvName = Path.GetTempFileName() + ".csv";
-            var sut = new CsvRepository(csvName);
+            var sut =new UniqueNumberProvider( new CsvRepository(csvName));
 
             // Act
             var res = sut.GetUniqueNewNumber(new DateTime(2018, 4, 5), "031069-0503");
@@ -26,7 +26,7 @@ namespace Ajf.IdTracker.Tests
         {
             // Arrange
             var csvName = Path.GetTempFileName() + ".csv";
-            var sut = new CsvRepository(csvName);
+            var sut = new UniqueNumberProvider(new CsvRepository(csvName));
             sut.GetUniqueNewNumber(new DateTime(2018, 4, 5), "031069-0503");
 
             // Act

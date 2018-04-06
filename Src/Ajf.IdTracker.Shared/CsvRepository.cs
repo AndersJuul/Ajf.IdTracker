@@ -50,16 +50,7 @@ namespace Ajf.IdTracker.Shared
             return new List<UniqueNumber>();
         }
 
-        public string GetUniqueNewNumber(DateTime date, string cpr)
-        {
-            var newUniqueNumber= GetUniqueNewNumber2(date, cpr);
-
-            Add(newUniqueNumber);
-
-            return newUniqueNumber.Id;
-        }
-
-        private UniqueNumber GetUniqueNewNumber2(DateTime date, string cpr)
+        public UniqueNumber GetUniqueNewNumber2(DateTime date, string cpr)
         {
             if(!File.Exists(_csvFileName))
             {
@@ -80,7 +71,7 @@ namespace Ajf.IdTracker.Shared
             };
         }
 
-        private void Add(UniqueNumber newUniqueNumber)
+        public void Add(UniqueNumber newUniqueNumber)
         {
             var fileWasThere = File.Exists(_csvFileName);
 

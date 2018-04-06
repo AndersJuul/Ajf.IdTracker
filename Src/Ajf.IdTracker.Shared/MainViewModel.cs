@@ -5,11 +5,12 @@ namespace Ajf.IdTracker.Shared
 {
     public class MainViewModel 
     {
-        private IRepository _cvsRepository;
+        private readonly IUniqueNumberProvider _uniqueNumberProvider;
 
-        public MainViewModel(IRepository cvsRepository)
+        public MainViewModel(IUniqueNumberProvider uniqueNumberProvider)
         {
-            _cvsRepository = cvsRepository;
+            _uniqueNumberProvider = uniqueNumberProvider;
+
             Cpr = "031069-0503";
         }
 
@@ -21,7 +22,7 @@ namespace Ajf.IdTracker.Shared
         {
             var date = DateTime.Today;
 
-            var uniqueNewNumber= _cvsRepository
+            var uniqueNewNumber= _uniqueNumberProvider
                 .GetUniqueNewNumber(date, Cpr);
 
             Clipboard.SetText(uniqueNewNumber);
