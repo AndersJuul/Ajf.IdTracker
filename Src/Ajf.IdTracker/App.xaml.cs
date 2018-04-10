@@ -1,4 +1,6 @@
 ﻿using Ajf.IdTracker.Shared;
+using StructureMap;
+using System.Diagnostics;
 using System.Windows;
 
 namespace IdTracker
@@ -10,7 +12,15 @@ namespace IdTracker
     {
         public App()
         {
-            var mainVm = new MainViewModel(new UniqueNumberProvider( new CsvRepository()));
+            var c=new Container(new IdTrackerSharedRegistry());
+            Debug.WriteLine(c.WhatDoIHave());
+
+            var mainVm = c.GetInstance<MainViewModel>();
+
+            mainVm.PurposeItems=c
+                .GetInstance<IPurposeItemsProvider>()
+                .GetPurposeItems();
+
             var mainform = new MainWindow()
             {
                 DataContext = mainVm

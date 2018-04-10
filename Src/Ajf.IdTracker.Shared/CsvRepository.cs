@@ -10,9 +10,9 @@ namespace Ajf.IdTracker.Shared
 {
     public class CsvRepository : IRepository
     {
-        public class StrItemClassMap : ClassMap<UniqueNumber>
+        public class UniqueNumberClassMap : ClassMap<UniqueNumber>
         {
-            public StrItemClassMap()
+            public UniqueNumberClassMap()
             {
                 AutoMap();
                 Map(m => m.Id);
@@ -43,18 +43,18 @@ namespace Ajf.IdTracker.Shared
                 var csv = new CsvReader(streamReader);
                 csv.Configuration.HasHeaderRecord = true;
 
-                csv.Configuration.RegisterClassMap(typeof(StrItemClassMap));
+                csv.Configuration.RegisterClassMap(typeof(UniqueNumberClassMap));
                 return csv.GetRecords<UniqueNumber>().ToList();
             }
 
             return new List<UniqueNumber>();
         }
 
-        public UniqueNumber GetUniqueNewNumber2(DateTime date, string cpr, string name)
+        public UniqueNumber GetUniqueNewNumber2(DateTime date, string cpr, string name, string purpose)
         {
             if(!File.Exists(_csvFileName))
             {
-                return UniqueNumber.Create(date, 1, cpr, name);
+                return UniqueNumber.Create(date, 1, cpr, name, purpose);
             }
 
             using (var fileReader = File.OpenText(_csvFileName))
@@ -66,7 +66,7 @@ namespace Ajf.IdTracker.Shared
                     fromDate.Max(x => x.TrialNumber) :
                     0;
 
-                var newUniqueNumber = UniqueNumber.Create(date, maxTrialNumber + 1, cpr, name);
+                var newUniqueNumber = UniqueNumber.Create(date, maxTrialNumber + 1, cpr, name, purpose);
                 return newUniqueNumber;
             };
         }
@@ -86,7 +86,7 @@ namespace Ajf.IdTracker.Shared
                 }
 
                 csv.Configuration.QuoteAllFields = true;
-                csv.Configuration.RegisterClassMap(typeof(StrItemClassMap));
+                csv.Configuration.RegisterClassMap(typeof(UniqueNumberClassMap));
 
                 csv.WriteRecord(newUniqueNumber);
                 csv.NextRecord();
