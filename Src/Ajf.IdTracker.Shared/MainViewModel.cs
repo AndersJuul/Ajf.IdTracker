@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 
 namespace Ajf.IdTracker.Shared
@@ -20,11 +21,31 @@ namespace Ajf.IdTracker.Shared
 
         public string Name { get; set; }
 
+        public int PurposeId { get; set; }
+        public string Purpose
+        {
+            get
+            {
+                return _purposeItems[PurposeId];
+            }
+        }
+
+        private string[] _purposeItems;
+        public string[] PurposeItems
+        {
+            get { return _purposeItems; }
+            set
+            {
+                _purposeItems = value;
+            }
+        }
+
+
         public void Generate()
         {
             var date = DateTime.Today;
 
-            var uniqueNewNumber= _uniqueNumberProvider
+            var uniqueNewNumber = _uniqueNumberProvider
                 .GetUniqueNewNumber(date, Cpr, Name);
 
             Clipboard.SetText(uniqueNewNumber);

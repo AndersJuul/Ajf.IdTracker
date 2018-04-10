@@ -10,9 +10,9 @@ namespace Ajf.IdTracker.Shared
 {
     public class CsvRepository : IRepository
     {
-        public class StrItemClassMap : ClassMap<UniqueNumber>
+        public class UniqueNumberClassMap : ClassMap<UniqueNumber>
         {
-            public StrItemClassMap()
+            public UniqueNumberClassMap()
             {
                 AutoMap();
                 Map(m => m.Id);
@@ -43,7 +43,7 @@ namespace Ajf.IdTracker.Shared
                 var csv = new CsvReader(streamReader);
                 csv.Configuration.HasHeaderRecord = true;
 
-                csv.Configuration.RegisterClassMap(typeof(StrItemClassMap));
+                csv.Configuration.RegisterClassMap(typeof(UniqueNumberClassMap));
                 return csv.GetRecords<UniqueNumber>().ToList();
             }
 
@@ -86,7 +86,7 @@ namespace Ajf.IdTracker.Shared
                 }
 
                 csv.Configuration.QuoteAllFields = true;
-                csv.Configuration.RegisterClassMap(typeof(StrItemClassMap));
+                csv.Configuration.RegisterClassMap(typeof(UniqueNumberClassMap));
 
                 csv.WriteRecord(newUniqueNumber);
                 csv.NextRecord();

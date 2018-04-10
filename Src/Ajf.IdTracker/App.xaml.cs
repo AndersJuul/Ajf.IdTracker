@@ -13,11 +13,14 @@ namespace IdTracker
         public App()
         {
             var c=new Container(new IdTrackerSharedRegistry());
-
             Debug.WriteLine(c.WhatDoIHave());
 
-            // new MainViewModel(new UniqueNumberProvider( new CsvRepository()));
             var mainVm = c.GetInstance<MainViewModel>();
+
+            mainVm.PurposeItems=c
+                .GetInstance<IPurposeItemsProvider>()
+                .GetPurposeItems();
+
             var mainform = new MainWindow()
             {
                 DataContext = mainVm

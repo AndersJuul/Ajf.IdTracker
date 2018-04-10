@@ -13,6 +13,7 @@ namespace Ajf.IdTracker.Shared
                 });
 
             For<IRepository>().Use<CsvRepository>();
+            For<IPurposeRepository>().Use<CsvPurposeRepository>();
         }
     }
 }
