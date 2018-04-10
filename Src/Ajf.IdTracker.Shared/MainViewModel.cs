@@ -46,7 +46,7 @@ namespace Ajf.IdTracker.Shared
             var date = DateTime.Today;
 
             var uniqueNewNumber = _uniqueNumberProvider
-                .GetUniqueNewNumber(date, Cpr, Name);
+                .GetUniqueNewNumber(date, Cpr, Name, Purpose);
 
             Clipboard.SetText(uniqueNewNumber);
         }
