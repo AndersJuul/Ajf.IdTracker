@@ -34,6 +34,9 @@
       <HintPath>..\packages\CsvHelper.7.1.0\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="StructureMap, Version=4.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StructureMap.4.6.1\lib\net45\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -45,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IdTrackerSharedRegistry.cs" />
+    <Compile Include="IMainViewModel.cs" />
     <Compile Include="IUniqueNumberProvider.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="CsvRepository.cs" />

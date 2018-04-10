@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace Ajf.IdTracker.Shared
 {
-    public class MainViewModel 
+    public class MainViewModel : IMainViewModel
     {
         private readonly IUniqueNumberProvider _uniqueNumberProvider;
 
