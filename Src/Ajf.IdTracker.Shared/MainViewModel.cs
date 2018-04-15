@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Windows;
 
@@ -11,11 +12,9 @@ namespace Ajf.IdTracker.Shared
         public MainViewModel(IUniqueNumberProvider uniqueNumberProvider)
         {
             _uniqueNumberProvider = uniqueNumberProvider;
-
-            Cpr = "031069-0503";
         }
 
-        public string Title => "Risk";
+        public string Title => "IdTracker";
 
         public string Cpr { get; set; }
 
@@ -41,14 +40,16 @@ namespace Ajf.IdTracker.Shared
         }
 
 
-        public void Generate()
+        public string Generate()
         {
             var date = DateTime.Today;
 
             var uniqueNewNumber = _uniqueNumberProvider
-                .GetUniqueNewNumber(date, Cpr, Name, Purpose);
+                .GetUniqueNewNumber(date, Cpr, Name, Purpose, ConfigurationManager.AppSettings["EquipmentID"]);
 
             Clipboard.SetText(uniqueNewNumber);
+
+            return uniqueNewNumber;
         }
     }
 }

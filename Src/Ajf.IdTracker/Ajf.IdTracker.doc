@@ -1,0 +1,36 @@
+Ajf.IdTracker documentation
+-----
+
+ABOUT
+
+This tools enables decoupling of flowcyto data from personable identifiable data like the 
+Danish CPR. A file which links a new ID to personable identifiable data is the output 
+of this program.
+
+For use with flowcyto trials, run this tool to get and record an alternative ID to use for
+trial file names like the flowcyto output files.
+
+Noticate that protecting the output file from this program is paramount. It is a link that
+can be used by both scientists and hackers.
+
+
+INSTALLING
+
+The tool is provided as a simple zip file, downloadable from authors personal web site at
+www.andersathome.dk/zips.
+Unzip to any directory and update the Ajf.IdTracker.exe.config file, see below. If you are
+updating from older version, be careful not to overwrite your config file with the one
+contained in the relased zip file.
+
+CONFIGURATION
+
+The configuration of the program is found in the Ajf.IdTracker.exe.config. Look for a section
+called appSettings in the file.
+The file has three settings of interest to the user.
+- CsvLocation - this is where the resulting mapping file is found. Created in not present.
+- CsvPurposeLocation - this is the location of the input file from which content the user can select.
+- EquipmentID - this is a globally unique string identifying (flowcyto) equipment.
+The files are simple text files and can be edited with notepad or excel.
+File identified by 'CsvLocation' is output from the program and does not need to be edited by user.
+File identified by 'CsvPurposeLocation' must be created by user.
+EquipmentID is written to the 'CsvLocation' and should only be set once.

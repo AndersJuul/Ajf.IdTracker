@@ -1,0 +1,12 @@
+Ajf.IdTracker revisions
+-----
+
+1.0.6
+
+- Equipment ID introduced in config file and resulting IdTracker.csv
+- Test CPR removed from UI
+- Title of program window corrected
+- Messagebox shown confirming the generated ID
+- UI 'beautified' with margins and paddings
+
+This release

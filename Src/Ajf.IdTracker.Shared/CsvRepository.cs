@@ -50,11 +50,11 @@ namespace Ajf.IdTracker.Shared
             return new List<UniqueNumber>();
         }
 
-        public UniqueNumber GetUniqueNewNumber2(DateTime date, string cpr, string name, string purpose)
+        public UniqueNumber GetUniqueNewNumber2(DateTime date, string cpr, string name, string purpose, string equipmentID)
         {
             if(!File.Exists(_csvFileName))
             {
-                return UniqueNumber.Create(date, 1, cpr, name, purpose);
+                return UniqueNumber.Create(date, 1, cpr, name, purpose, equipmentID);
             }
 
             using (var fileReader = File.OpenText(_csvFileName))
@@ -66,7 +66,7 @@ namespace Ajf.IdTracker.Shared
                     fromDate.Max(x => x.TrialNumber) :
                     0;
 
-                var newUniqueNumber = UniqueNumber.Create(date, maxTrialNumber + 1, cpr, name, purpose);
+                var newUniqueNumber = UniqueNumber.Create(date, maxTrialNumber + 1, cpr, name, purpose, equipmentID);
                 return newUniqueNumber;
             };
         }

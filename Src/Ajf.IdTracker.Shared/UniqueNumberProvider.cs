@@ -10,9 +10,9 @@ namespace Ajf.IdTracker.Shared
         {
             _repository = repository;
         }
-        public string GetUniqueNewNumber(DateTime date, string cpr, string name, string purpose)
+        public string GetUniqueNewNumber(DateTime date, string cpr, string name, string purpose, string equipmentID)
         {
-            var newUniqueNumber = _repository.GetUniqueNewNumber2(date, cpr, name, purpose);
+            var newUniqueNumber = _repository.GetUniqueNewNumber2(date, cpr, name, purpose, equipmentID);
 
             _repository.Add(newUniqueNumber);
 

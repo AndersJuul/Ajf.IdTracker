@@ -4,7 +4,7 @@ namespace Ajf.IdTracker.Shared
 {
     public class UniqueNumber
     {
-        public static UniqueNumber Create(DateTime date, int trialNumber, string cpr, string name, string purpose)
+        public static UniqueNumber Create(DateTime date, int trialNumber, string cpr, string name, string purpose, string equipmentID)
         {
             var un = new UniqueNumber()
             {
@@ -13,7 +13,8 @@ namespace Ajf.IdTracker.Shared
                 TrialNumber = trialNumber,
                 Name=name,
                 Id= date.ToString("yyyyMMdd") + "-" + trialNumber.ToString("00"),
-                Purpose=purpose
+                Purpose=purpose,
+                EquipmentID = equipmentID
             };
 
             return un;
@@ -25,5 +26,6 @@ namespace Ajf.IdTracker.Shared
         public DateTime Date { get; set; }
         public int TrialNumber { get; set; }
         public string Purpose { get; set; }
+        public string EquipmentID { get; set; }
     }
 }

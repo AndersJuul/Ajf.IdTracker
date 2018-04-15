@@ -28,7 +28,8 @@ namespace IdTracker
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as MainViewModel).Generate();
+            var uniqueNewNumber = (DataContext as MainViewModel).Generate();
+            MessageBox.Show("Unique new number copied to clipboard: " + uniqueNewNumber);
         }
     }
 }
